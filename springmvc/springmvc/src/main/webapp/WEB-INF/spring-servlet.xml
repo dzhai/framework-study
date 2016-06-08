@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		
+    <context:component-scan base-package="com.github.dzhai">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+    
+    <mvc:resources mapping="/css/**" location="/css/" /> <!-- 静态资源 -->
+    
+    <mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+				<property name="features">
+					<array>
+						<value>WriteMapNullValue</value>
+						<value>WriteNullStringAsEmpty</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsps/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/login.htm"/> -->
+<!-- 			<mvc:exclude-mapping path="/code.htm"/> -->
+<!-- 			<mvc:exclude-mapping path="/dologin.json"/> -->
+<!-- 			<mvc:exclude-mapping path="/logout.htm"/> -->
+<!-- 			<bean class="com.nongjk.admin.interceptor.LoginHandlerInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/*.htm"/> -->
+<!-- 			<mvc:exclude-mapping path="/*.json"/>	 -->
+<!-- 			<bean class="com.nongjk.admin.interceptor.PermissionHandlerInterceptor"> -->
+<!-- 				<property name="SWITCHON"  value="false"/>是否开启权限 -->
+<!-- 				<property name="uncheckUrls"> -->
+<!-- 						<list> -->
+<!-- 							<value>/spot/city.json</value> -->
+<!-- 						</list> -->
+<!-- 					</property> -->
+<!-- 			</bean> -->
+<!-- 		</mvc:interceptor> -->
+		
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/*/edit.*" /> -->
+<!-- 			<mvc:mapping path="/*/add.*" /> -->
+<!-- 			<mvc:mapping path="/*/delete.*" /> -->
+<!-- 			<mvc:mapping path="/*/update.*" /> -->
+<!-- 			<mvc:mapping path="/*/import.*" /> -->
+<!-- 			<mvc:mapping path="/**/delete.*" /> -->
+<!-- 			<bean class="com.nongjk.admin.interceptor.LoggerInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+		
+<!-- 	</mvc:interceptors>  -->
+<!--     <bean  class="com.nongjk.admin.common.ApplicationUtils" lazy-init="false"/> -->
+</beans>
