@@ -25,7 +25,9 @@
 			<tx:method name="add*" propagation="REQUIRED"    rollback-for="java.lang.Exception" />
 			<tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
 			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
-			<tx:method name="save*" propagation="REQUIRED"   rollback-for="java.lang.Exception" />					
+			<tx:method name="save*" propagation="REQUIRED"   rollback-for="java.lang.Exception" />
+			<tx:method name="save*" propagation="REQUIRED"   rollback-for="java.lang.Exception" />
+			<tx:method name="modify*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>				
 		</tx:attributes>
 	</tx:advice>
 
@@ -33,7 +35,7 @@
 	<aop:config>
 		<!-- 配置有那些类中的方法拥有事务的传播性 -->
 		<aop:pointcut id="txPointcut"
-			expression="execution(* com.nongjk.admin.service.*.*(..))			
+			expression="execution(* com.github.dzhai.service.*.*(..))			
 			"/>
 
 		<!-- 事务AOP -->

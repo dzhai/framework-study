@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemesh>
 	<!-- 指明满足"*.htm"的页面，将被"dashboard.jsp"所装饰 -->
-    <mapping path="*.htm" decorator="/WEB-INF/jsps/sitemesh3/dashboard.jsp"/>
+    <mapping path="*.htm" decorator="/views/sitemesh3/dashboard.jsp"/>
     
     <!-- 指明满足"/exclude.jsp*"的页面，将被排除，不被装饰 -->
-    <mapping path="/login.htm" exclue="true" />
-    <mapping path="/left.htm" exclue="true" />
-    <mapping path="/map.htm" exclue="true" />
-    <mapping path="*.json" exclue="true" />
-<!--     <content-processor> -->
-<!--     	<tag-rule-bundle class="com.nongjk.admin.utils.ExtHtmlTagRuleBundle" /> -->
-<!--  	</content-processor> -->
+    <mapping path="/error.htm" exclue="true" />
+    <mapping path="/404.htm" exclue="true" />
+    
+    <content-processor>
+    	<tag-rule-bundle class="com.github.dzhai.util.ExtHtmlTagRuleBundle" />
+ 	</content-processor>
 </sitemesh>
