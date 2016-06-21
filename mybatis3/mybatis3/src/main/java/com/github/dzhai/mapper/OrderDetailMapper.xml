@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.dzhai.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.github.dzhai.model.OrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orders_id" property="ordersId" jdbcType="INTEGER" />
+    <result column="items_id" property="itemsId" jdbcType="INTEGER" />
+    <result column="items_num" property="itemsNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orders_id, items_id, items_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.github.dzhai.model.OrderDetail" useGeneratedKeys="true" keyProperty="id" >
+    insert into orderdetail (orders_id, items_id, items_num
+      )
+    values (#{ordersId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, #{itemsNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.dzhai.model.OrderDetail" useGeneratedKeys="true" keyProperty="id" >
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ordersId != null" >
+        orders_id,
+      </if>
+      <if test="itemsId != null" >
+        items_id,
+      </if>
+      <if test="itemsNum != null" >
+        items_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ordersId != null" >
+        #{ordersId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsId != null" >
+        #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsNum != null" >
+        #{itemsNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.dzhai.model.OrderDetail" >
+    update orderdetail
+    <set >
+      <if test="ordersId != null" >
+        orders_id = #{ordersId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsId != null" >
+        items_id = #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsNum != null" >
+        items_num = #{itemsNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.dzhai.model.OrderDetail" >
+    update orderdetail
+    set orders_id = #{ordersId,jdbcType=INTEGER},
+      items_id = #{itemsId,jdbcType=INTEGER},
+      items_num = #{itemsNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
