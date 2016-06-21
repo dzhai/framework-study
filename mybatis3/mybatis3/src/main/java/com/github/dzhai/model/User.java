@@ -68,4 +68,8 @@ public class User implements Serializable {
 		this.ordersList = ordersList;
 	}
     
+	@Override
+	public String toString(){
+		return "username:"+username+"|id:"+id;
+	}
 }
