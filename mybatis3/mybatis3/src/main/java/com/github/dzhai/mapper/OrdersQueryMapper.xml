@@ -1,85 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.github.dzhai.mapper.OrdersQueryMapper" >
-   
-   <select id="findOrdersUserResultType" resultType="com.github.dzhai.model.OrdersUser">
-     SELECT 
-         o.*,
-         u.username,
-         u.sex,
-         u.address
-      FROM
-          orders o,
-          user u
-      WHERE o.user_id = u.id 
-    </select>
-    
-    <resultMap type="com.github.dzhai.model.Orders" id="OrdersUserResultMap">
-	    <!-- 配置映射订单信息 -->
-	    <id column="id" property="id"/>
-	    <result column="user_id" property="userId"/>
-	    <result column="number" property="number"/>
-	    <result column="createtime" property="createtime"/>
-	    <result column="note" property="note"/>
-	
-	    <!-- 配置映射的关联的用户信息 -->
-	    <!-- association用于映射关联查询单个对象的信息
-	        property：要将关联查询的用户信息映射到Orders中的哪个属性
-	        javaType：该属性的类型
-	     -->
-	    <association property="user" javaType="com.github.dzhai.model.User">
-	        <id column="user_id" property="id"/>
-	        <result column="username" property="username"/>
-	        <result column="sex" property="sex"/>
-	        <result column="address" property="address"/>
-	    </association>
-	</resultMap>
-    <select id="findOrdersUserResultMap" resultMap="OrdersUserResultMap">
-     SELECT 
-         o.*,
-         u.username,
-         u.sex,
-         u.address
-      FROM
-          orders o,
-          user u
-      WHERE o.user_id = u.id 
-    </select>
-    
-    
-    <resultMap type="com.github.dzhai.model.Orders" id="OrdersAndOrderDetailResultMap" extends="OrdersUserResultMap">
-	    <!-- 配置映射订单信息和关联的用户信息和上面的一样，继承上面的即可 -->
-	    <!-- 配置关联的订单明细信息 -->
-	    <collection property="orderdetails" ofType="com.github.dzhai.model.OrderDetail">
-	        <id column="orderdetail_id" property="id"/>
-	        <result column="items_id" property="itemsId"/>
-	        <result column="items_num" property="itemsNum"/>
-	        <result column="orders_id" property="ordersId"/>
-	    </collection>
-	</resultMap>
-    
-    
-   <select id="findOrdersAndOrderDetailResultMap" resultMap="OrdersAndOrderDetailResultMap">
-   	SELECT 
-	  o.*,
-	  u.username,
-	  u.sex,
-	  u.address,
-	  od.id orderdetail_id,
-	  od.items_id,
-	  od.items_num,
-	  od.orders_id 
-	FROM
-	  orders o,
-	  user u,
-	  orderdetail od 
-	WHERE 
-		o.user_id = u.id 
-		AND o.id = od.orders_id 
-	</select>
-	
-	
-	<resultMap type="com.github.dzhai.model.User" id="UserAndItemsResultMap">
+<resultMap type="com.github.dzhai.model.User" id="UserAndItemsResultMap">
 	    <!-- 用户信息 -->
 	    <id column="user_id" property="id"/>
 	    <result column="username" property="username"/>
@@ -133,5 +52,4 @@
 		WHERE o.user_id = u.id 
 		  AND o.id = od.orders_id 
 		  AND od.items_id = i.id 
-</select>
-</mapper>
+	</select>
