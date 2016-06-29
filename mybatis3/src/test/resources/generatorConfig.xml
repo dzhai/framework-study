@@ -31,16 +31,16 @@
     </javaTypeResolver>
     
 	<!-- model 代码生成位置 -->
-    <javaModelGenerator targetPackage="com.github.dzhai.model" targetProject="D:\gitproject\framework-study\mybatis3\mybatis3\src\main\java">
+    <javaModelGenerator targetPackage="com.github.dzhai.model" targetProject="D:\gitproject\framework-study\mybatis3\src\main\java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 	<!-- mapper.xml 代码生成位置 -->
-    <sqlMapGenerator targetPackage="com.github.dzhai.mapper"  targetProject="D:\gitproject\framework-study\mybatis3\mybatis3\src\main\java">
+    <sqlMapGenerator targetPackage="com.github.dzhai.mapper"  targetProject="D:\gitproject\framework-study\mybatis3\src\main\java">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 	<!-- mapper.java 代码生成位置 -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.github.dzhai.mapper"  targetProject="D:\gitproject\framework-study\mybatis3\mybatis3\src\main\java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.github.dzhai.mapper"  targetProject="D:\gitproject\framework-study\mybatis3\src\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
     

@@ -35,12 +35,12 @@
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 	<!-- targetProject:自动生成代码的位置 -->
-    <javaModelGenerator targetPackage="com.github.dzhai.model" targetProject="D:\gitproject\framework-study\springmvc\springmvc\src\main\java">
+    <javaModelGenerator targetPackage="com.github.dzhai.model" targetProject="D:\gitproject\framework-study\springmvc\src\main\java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="com.github.dzhai.mapper"  targetProject="D:\gitproject\framework-study\springmvc\springmvc\src\main\java">
+    <sqlMapGenerator targetPackage="com.github.dzhai.mapper"  targetProject="D:\gitproject\framework-study\springmvc\src\main\java">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 
