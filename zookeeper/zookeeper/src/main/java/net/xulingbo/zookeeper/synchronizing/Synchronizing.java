@@ -31,11 +31,11 @@ public class Synchronizing extends TestMainClient {
     public static final Logger logger = Logger.getLogger(Synchronizing.class);
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      *
-     * @param connectString ·şÎñÆ÷Á¬½Ó
-     * @param root ¸ùÄ¿Â¼
-     * @param size ¶ÓÁĞ´óĞ¡
+     * @param connectString æœåŠ¡å™¨è¿æ¥
+     * @param root æ ¹ç›®å½•
+     * @param size é˜Ÿåˆ—å¤§å°
      */
     Synchronizing(String connectString, String root, int size) {
         super(connectString);
@@ -63,7 +63,7 @@ public class Synchronizing extends TestMainClient {
     }
 
     /**
-     * ¼ÓÈë¶ÓÁĞ
+     * åŠ å…¥é˜Ÿåˆ—
      *
      * @return
      * @throws KeeperException
@@ -86,21 +86,21 @@ public class Synchronizing extends TestMainClient {
     @Override
     public void process(WatchedEvent event) {
         if(event.getPath().equals(root + "/start") && event.getType() == Event.EventType.NodeCreated){
-            System.out.println("µÃµ½Í¨Öª");
+            System.out.println("å¾—åˆ°é€šçŸ¥");
             super.process(event);
             doAction();
         }
     }
 
     /**
-     * Ö´ĞĞÆäËûÈÎÎñ
+     * æ‰§è¡Œå…¶ä»–ä»»åŠ¡
      */
     private void doAction(){
-        System.out.println("Í¬²½¶ÓÁĞÒÑ¾­µÃµ½Í¬²½£¬¿ÉÒÔ¿ªÊ¼Ö´ĞĞºóÃæµÄÈÎÎñÁË");
+        System.out.println("åŒæ­¥é˜Ÿåˆ—å·²ç»å¾—åˆ°åŒæ­¥ï¼Œå¯ä»¥å¼€å§‹æ‰§è¡Œåé¢çš„ä»»åŠ¡äº†");
     }
 
     public static void main(String args[]) {
-        //Æô¶¯Server
+        //å¯åŠ¨Server
         TestMainServer.start();
         String connectString = "localhost:"+TestMainServer.CLIENT_PORT;
         int size = 1; 

@@ -44,7 +44,7 @@ public class FIFOQueue extends TestMainClient{
         }
     }
     /**
-     * Éú²úÕß
+     * ç”Ÿäº§è€…
      *
      * @param i
      * @return
@@ -62,7 +62,7 @@ public class FIFOQueue extends TestMainClient{
 
 
     /**
-     * Ïû·ÑÕß
+     * æ¶ˆè´¹è€…
      *
      * @return
      * @throws KeeperException
@@ -98,7 +98,7 @@ public class FIFOQueue extends TestMainClient{
     }
 
     public static void main(String args[]) {
-        //Æô¶¯Server
+        //å¯åŠ¨Server
         TestMainServer.start();
         String connectString = "localhost:"+TestMainServer.CLIENT_PORT;
 

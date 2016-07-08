@@ -1,4 +1,4 @@
-package com.github.dzhai.zookeeper.zkclient;
+package com.github.dzhai.zookeeper;
 
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;

@@ -10,35 +10,38 @@ import java.io.IOException;
 /**
  * TestMainClient
  * <p/>
- * Author By: junshan
- * Created Date: 2010-9-7 14:11:44
+ * Author By: junshan Created Date: 2010-9-7 14:11:44
  */
 public class TestMainClient implements Watcher {
-    protected static ZooKeeper zk = null;
-    protected static Integer mutex;
-    int sessionTimeout = 10000;
-    protected String root;
-    
+	
+	protected ZooKeeper zk = null;
+	
+	protected Integer mutex;
+	
+	int sessionTimeout = 10000;
+	
+	protected String root;
 
-    
+	public TestMainClient(String connectString) {
+		if (zk == null) {
+			try {
 
-    public TestMainClient(String connectString) {
-        if(zk == null){
-            try {
+				String configFile = this.getClass().getResource("/").getPath()
+						+ "net/xulingbo/zookeeper/log4j/log4j.xml";
+				DOMConfigurator.configure(configFile);
+				System.out.println("åˆ›å»ºä¸€ä¸ªæ–°çš„è¿žæŽ¥:");
+				zk = new ZooKeeper(connectString, sessionTimeout, this);
+				mutex = new Integer(-1);
+			} catch (IOException e) {
+				zk = null;
+			}
+		}
+	}
 
-                String configFile = this.getClass().getResource("/").getPath()+"net/xulingbo/zookeeper/log4j/log4j.xml";
-                DOMConfigurator.configure(configFile);
-                System.out.println("´´½¨Ò»¸öÐÂµÄÁ¬½Ó:");
-                zk = new ZooKeeper(connectString, sessionTimeout, this);
-                mutex = new Integer(-1);
-            } catch (IOException e) {
-                zk = null;
-            }
-        }
-    }
-    synchronized public void process(WatchedEvent event) {
-        synchronized (mutex) {
-            mutex.notify();
-        }
-    }
+	synchronized public void process(WatchedEvent event) {
+		System.out.println(event.getPath());
+		synchronized (mutex) {
+			mutex.notify();
+		}
+	}
 }

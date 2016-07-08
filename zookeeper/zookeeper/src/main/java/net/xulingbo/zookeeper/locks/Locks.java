@@ -65,16 +65,16 @@ public class Locks extends TestMainClient {
     @Override
     public void process(WatchedEvent event) {
         if(event.getType() == Event.EventType.NodeDeleted){
-            System.out.println("µÃµ½Í¨Öª");
+            System.out.println("å¾—åˆ°é€šçŸ¥");
             super.process(event);
             doAction();
         }
     }
     /**
-     * Ö´ĞĞÆäËûÈÎÎñ
+     * æ‰§è¡Œå…¶ä»–ä»»åŠ¡
      */
     private void doAction(){
-        System.out.println("Í¬²½¶ÓÁĞÒÑ¾­µÃµ½Í¬²½£¬¿ÉÒÔ¿ªÊ¼Ö´ĞĞºóÃæµÄÈÎÎñÁË");
+        System.out.println("åŒæ­¥é˜Ÿåˆ—å·²ç»å¾—åˆ°åŒæ­¥ï¼Œå¯ä»¥å¼€å§‹æ‰§è¡Œåé¢çš„ä»»åŠ¡äº†");
     }
 
     public static void main(String[] args) {

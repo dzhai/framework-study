@@ -1,4 +1,4 @@
-package net.xulingbo.zookeeper.LeaderElection;
+package com.github.dzhai.zookeeper.leaderElection;
 
 import net.xulingbo.zookeeper.TestMainClient;
 import net.xulingbo.zookeeper.TestMainServer;
@@ -11,7 +11,6 @@ import org.apache.zookeeper.data.Stat;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Random;
 
 /**
  * LeaderElection
@@ -39,7 +38,7 @@ public class LeaderElection extends TestMainClient {
         }
     }
 
-    public void findLeader() throws InterruptedException, UnknownHostException, KeeperException {
+    void findLeader() throws InterruptedException, UnknownHostException, KeeperException {
         byte[] leader = null;
         try {
             leader = zk.getData(root + "/leader", true, null);
@@ -89,5 +88,15 @@ public class LeaderElection extends TestMainClient {
         System.out.println("成为组成员");
     }
 
-    
+    public static void main(String[] args) {
+        TestMainServer.start();
+        String connectString = "localhost:" + TestMainServer.CLIENT_PORT;
+
+        LeaderElection le = new LeaderElection(connectString, "/GroupMembers");
+        try {
+            le.findLeader();
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
 }
